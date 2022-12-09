@@ -9,7 +9,7 @@ const Header: FC = () => {
   };
 
   return (
-    <nav className="w-full p-3 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <nav className="w-full p-3 mb-5 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="#" className="flex items-center">
           <img
