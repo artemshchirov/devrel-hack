@@ -9,9 +9,9 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ children }) => {
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen p-3 bg-gray-500 dark:bg-gray-700">
+    <div className="flex flex-col justify-between min-h-screen p-3 bg-gray-500 dark:bg-gray-700 ">
       <Header />
-      <main className="flex flex-col items-center justify-center h-full w-max">
+      <main className="flex flex-col justify-center h-full">
         {children}
       </main>
       <Footer />

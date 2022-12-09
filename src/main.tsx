@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import './assets/index.css';
+import './index.css';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 ReactDOM.createRoot(rootElement).render(
