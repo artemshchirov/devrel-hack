@@ -17,7 +17,7 @@ const Footer: FC = () => {
         <li>
           <CustomLink
             href="https://github.com/artemshchirov/template-vite-react-ts-tailwindcss-primereact"
-            className="mr-4 hover:underline md:mr-6 "
+            className="hover:underline"
           >
             GitHub
           </CustomLink>

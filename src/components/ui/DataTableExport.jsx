@@ -1,9 +1,9 @@
+// TODO: .tsx
 import { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
-
 // import { ProductService } from '../service/ProductService';
 
 export const DataTableExport = () => {
@@ -11,7 +11,6 @@ export const DataTableExport = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const dt = useRef(null);
-
   // const productService = new ProductService();
 
   const cols = [
@@ -44,9 +43,9 @@ export const DataTableExport = () => {
       { code: 'test Name9', name: 'das', category: 'dsa', quantity: 'dsadsa' },
       { code: 'test Name10', name: 'das', category: 'dsa', quantity: 'dsadsa' },
       { code: 'test Name11', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name11', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name11', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name11', name: 'das', category: 'dsa', quantity: 'dsadsa' },
+      { code: 'test Name12', name: 'das', category: 'dsa', quantity: 'dsadsa' },
+      { code: 'test Name13', name: 'das', category: 'dsa', quantity: 'dsadsa' },
+      { code: 'test Name14', name: 'das', category: 'dsa', quantity: 'dsadsa' },
     ];
 
     setProducts(testData);
@@ -110,57 +109,52 @@ export const DataTableExport = () => {
         type="button"
         icon="pi pi-file"
         onClick={() => exportCSV(false)}
-        className="p-button-info mr-2"
+        className="mr-2 p-button-info"
         data-pr-tooltip="CSV"
       />
       <Button
         type="button"
         icon="pi pi-file-excel"
         onClick={exportExcel}
-        className="p-button-success mr-2"
+        className="mr-2 p-button-success"
         data-pr-tooltip="XLS"
       />
       <Button
         type="button"
         icon="pi pi-file-pdf"
         onClick={exportPdf}
-        className="p-button-warning mr-2"
+        className="mr-2 p-button-warning"
         data-pr-tooltip="PDF"
       />
       <Button
         type="button"
         icon="pi pi-filter"
         onClick={() => exportCSV(true)}
-        className="p-button-info ml-auto"
+        className="ml-auto p-button-info"
         data-pr-tooltip="Selection Only"
       />
     </div>
   );
 
   return (
-    <div>
-      <div className="card">
-        <h5 className="text-white">Export</h5>
-
-        <Tooltip target=".export-buttons>button" position="bottom" />
-
-        <DataTable
-          paginator
-          rows={10}
-          ref={dt}
-          value={products}
-          header={header}
-          dataKey="id"
-          responsiveLayout="scroll"
-          selectionMode="multiple"
-          selection={selectedProducts}
-          onSelectionChange={onSelectionChange}
-        >
-          {cols.map((col, index) => (
-            <Column key={index} field={col.field} header={col.header}/>
-          ))}
-        </DataTable>
-      </div>
+    <div className="mt-3 overflow-hidden rounded-lg card">
+      <Tooltip target=".export-buttons>button" position="bottom" />
+      <DataTable
+        paginator
+        rows={10}
+        ref={dt}
+        value={products}
+        header={header}
+        dataKey="id"
+        responsiveLayout="scroll"
+        selectionMode="multiple"
+        selection={selectedProducts}
+        onSelectionChange={onSelectionChange}
+      >
+        {cols.map((col, index) => (
+          <Column key={index} field={col.field} header={col.header} />
+        ))}
+      </DataTable>
     </div>
   );
 };

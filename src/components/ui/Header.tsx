@@ -9,8 +9,8 @@ const Header: FC = () => {
   };
 
   return (
-    <nav className="w-full p-3 mb-5 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
+    <header className="w-full p-4 mb-5 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 md:px-6 dark:border-gray-700">
+      <div className="container flex flex-wrap items-center justify-between min-w-full">
         <a href="#" className="flex items-center">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -76,7 +76,7 @@ const Header: FC = () => {
           </ul>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 
