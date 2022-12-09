@@ -10,7 +10,7 @@ const Footer: FC = () => {
           href="https://codenrock.com/contests/devrel-hack#/info"
           className="hover:underline"
         >
-          DevRel Hackathon App
+          DevRel Hack 4 Luck
         </CustomLink>
       </span>
       <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
