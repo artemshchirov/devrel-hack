@@ -30,16 +30,33 @@ const PieChart = ({ data }) => {
   });
 
   useEffect(() => {
-    setDatasetLabels(Object.keys(data).slice(0, 10));
-    setDataset(Object.values(data).slice(0, 10));
-    console.log('dataset: ', dataset);
+    const newDatasetLabels = Object.keys(data);
+    const newDataset = Object.values(data);
+
+    setDatasetLabels(newDatasetLabels);
+    setDataset(newDataset);
+
+    console.log('datasetLabels: ', datasetLabels.slice(0, 10));
+    console.log('dataset: ', dataset.slice(0, 10));
+
     setChartData({
-      labels: datasetLabels,
+      labels: datasetLabels.slice(0, 10),
       datasets: [
         {
-          data: dataset,
-          backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
-          hoverBackgroundColor: ['#64B5F6', '#81C784', '#FFB74D'],
+          data: dataset.slice(0, 10),
+          backgroundColor: [
+            '#42A5F5',
+            '#66BB6A',
+            '#FFA726',
+            '#1dd5e4',
+            '#ce033c',
+            '#d1bef0',
+            '#2bfb11',
+            '#ba22c5',
+            '#eb7a45',
+            '#7a80a2',
+          ],
+          hoverBackgroundColor: ['#B3FFFFFF'],
         },
       ],
     });

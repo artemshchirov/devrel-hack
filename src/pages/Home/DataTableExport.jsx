@@ -73,17 +73,32 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
     });
   };
 
-  function fetchUserRepositories(login) {
-    return fetch(`https://api.github.com/users/${login}/repos`, {
-      headers: {
-        Authorization:
-          'token ' +
-          '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',
-      },
-    })
+  function fetchContributors({ id }) {
+    return fetch(
+      `https://artemshchirov.github.io/devrel-github-api/get_contributors.json`,
+    )
       .then((res) => res.json())
       .then((res) => {
-        return res;
+        console.log('res: ', res);
+
+        let obj = res.find((o) => {
+          return o.id === id;
+        });
+        console.log('obj: ', obj);
+
+        return obj;
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function fetchUserRepositories({ id }) {
+    return fetch(
+      `https://artemshchirov.github.io/devrel-github-api/users_data_repos.json`,
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        const idx = res.findIndex((user) => user[0].owner.id === id);
+        return res[idx];
       })
       .catch((err) => console.log(err));
   }
@@ -93,9 +108,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
     const newSelectedProducts = selectedProducts.slice();
     newSelectedProducts.push(selectedLine);
     setSelectedProducts(newSelectedProducts);
-
-
-    const userRepositories = await fetchUserRepositories(selectedLine.login);
+    const userRepositories = await fetchUserRepositories(selectedLine);
     handleLineClick(userRepositories);
   };
 
