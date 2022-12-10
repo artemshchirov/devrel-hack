@@ -76,7 +76,9 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   function fetchUserRepositories(login) {
     return fetch(`https://api.github.com/users/${login}/repos`, {
       headers: {
-        Authorization: 'token ' + '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',
+        Authorization:
+          'token ' +
+          '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',
       },
     })
       .then((res) => res.json())
@@ -91,6 +93,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
     const newSelectedProducts = selectedProducts.slice();
     newSelectedProducts.push(selectedLine);
     setSelectedProducts(newSelectedProducts);
+
 
     const userRepositories = await fetchUserRepositories(selectedLine.login);
     handleLineClick(userRepositories);
