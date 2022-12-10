@@ -11,6 +11,8 @@ import { repository_stack } from '../../data/repository_stack';
 import JsonApi from '../../utils/jsonApi';
 import RadarChart from './RadarChart';
 import { configJsonApi } from '../../utils/configApi';
+import PolarAreaChart from './PolarAreaChart';
+import { contributors } from '../../data/contributors';
 
 const Home: FC = () => {
   const jsonApi = new JsonApi(configJsonApi);
@@ -18,6 +20,14 @@ const Home: FC = () => {
   const topRepositoriyStack = Object.fromEntries(
     Object.entries(repository_stack).sort(([, a], [, b]) => b - a),
   );
+
+  const topContributors = contributors.map((user) => {
+    const contributor = {
+      labelsName: user.login,
+      dataset: user.contributions,
+    };
+    return contributor;
+  });
 
   const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
 
@@ -53,12 +63,14 @@ const Home: FC = () => {
       <TabViewTech cols={cols} />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
       <div className="flex items-center flex-wrap py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
-        <PieChart data={pieChartData} />
-        <DoughnutChart jsonApi={jsonApi} />
-      </div>
-      <div className="flex items-center flex-wrap py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
+        <PieChart jsonApi={jsonApi} data={pieChartData} />
         <RadarChart jsonApi={jsonApi} />
       </div>
+      <div className="flex items-center flex-wrap py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
+        <PolarAreaChart jsonApi={jsonApi} data={topContributors} />
+        <DoughnutChart jsonApi={jsonApi} />
+      </div>
+
     </Page>
   );
 };
