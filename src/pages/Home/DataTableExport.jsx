@@ -76,7 +76,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   function fetchUserRepositories(login) {
     return fetch(`https://api.github.com/users/${login}/repos`, {
       headers: {
-        Authorization: 'token ' + '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',
+        Authorization: 'token ' + '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',
       },
     })
       .then((res) => res.json())
