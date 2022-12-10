@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
 
+// TODO: implement jsonApi
 const DoughnutChart = ({ jsonApi }) => {
+  const [issues, setIssues] = useState({});
+
+  useEffect(() => {
+    // setIssues(jsonApi.getIssuesCount());
+  }, []);
+
   const [chartData] = useState({
     labels: ['A', 'B', 'C'],
     datasets: [

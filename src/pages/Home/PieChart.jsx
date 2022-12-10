@@ -1,7 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
+const backgroundColor = [
+  '#42A5F5',
+  '#66BB6A',
+  '#FFA726',
+  '#1dd5e4',
+  '#ce033c',
+  '#d1bef0',
+  '#2bfb11',
+  '#ba22c5',
+  '#eb7a45',
+  '#7a80a2',
+];
+
 // FIXME: null in PieChart
+// TODO: implement jsonApi
 const PieChart = ({ data }) => {
   const [datasetLabels, setDatasetLabels] = useState(
     Object.keys(data).slice(0, 10),
@@ -13,8 +27,9 @@ const PieChart = ({ data }) => {
     datasets: [
       {
         data: dataset,
-        backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
-        hoverBackgroundColor: ['#64B5F6', '#81C784', '#FFB74D'],
+        data: dataset.slice(0, 10),
+        backgroundColor: backgroundColor,
+        hoverBackgroundColor: ['#B3FFFFFF'],
       },
     ],
   });
@@ -41,18 +56,7 @@ const PieChart = ({ data }) => {
       datasets: [
         {
           data: dataset.slice(0, 10),
-          backgroundColor: [
-            '#42A5F5',
-            '#66BB6A',
-            '#FFA726',
-            '#1dd5e4',
-            '#ce033c',
-            '#d1bef0',
-            '#2bfb11',
-            '#ba22c5',
-            '#eb7a45',
-            '#7a80a2',
-          ],
+          backgroundColor: backgroundColor,
           hoverBackgroundColor: ['#B3FFFFFF'],
         },
       ],

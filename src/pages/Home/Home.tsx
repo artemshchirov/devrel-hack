@@ -5,21 +5,21 @@ import Page from '../../layouts/Page';
 
 import DataTableExport from './DataTableExport';
 import TabViewTech from './TabViewTech';
-import PieChartDemo from './PieChart';
+import PieChart from './PieChart';
 import DoughnutChart from './DoughnutChart';
 import { repository_stack } from '../../data/repository_stack';
 import JsonApi from '../../utils/jsonApi';
+import RadarChart from './RadarChart';
+import { configJsonApi } from '../../utils/configApi';
 
-interface HomeProps {
-  jsonApi: JsonApi;
-}
+const Home: FC = () => {
+  const jsonApi = new JsonApi(configJsonApi);
 
-const Home: FC<HomeProps> = ({ jsonApi }) => {
-  const sortable = Object.fromEntries(
+  const topRepositoriyStack = Object.fromEntries(
     Object.entries(repository_stack).sort(([, a], [, b]) => b - a),
   );
 
-  const [pieChartData, setPieChartData] = useState(sortable);
+  const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
 
   useEffect(() => {
     setPieChartData(repository_stack);
@@ -52,9 +52,12 @@ const Home: FC<HomeProps> = ({ jsonApi }) => {
     <Page>
       <TabViewTech cols={cols} />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
-      <div className="flex items-center py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
-        <PieChartDemo data={pieChartData} />
+      <div className="flex items-center flex-wrap py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
+        <PieChart data={pieChartData} />
         <DoughnutChart jsonApi={jsonApi} />
+      </div>
+      <div className="flex items-center flex-wrap py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
+        <RadarChart jsonApi={jsonApi} />
       </div>
     </Page>
   );

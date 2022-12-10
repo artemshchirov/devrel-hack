@@ -12,8 +12,11 @@ export default class JsonApi {
       ? response.json()
       : Promise.reject(Error(`Error, code: ${response.status}`));
 
-  getIssuesCount() {
-    return fetch(this._baseUrl)
+  _fetch(path: string) {
+    const url = this._baseUrl + path;
+    return fetch(url)
       .then((res) => this._handleResponse(res));
   }
+
+  // TODO: main api
 }
