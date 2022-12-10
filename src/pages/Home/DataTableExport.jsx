@@ -7,50 +7,26 @@ import { Tooltip } from 'primereact/tooltip';
 
 import { contributors } from '../../data/contributors.ts';
 
-export const DataTableExport = () => {
+export const DataTableExport = ({ cols }) => {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  console.log('contributors: ', contributors);
 
   const dt = useRef(null);
 
-  const cols = [
-    { field: 'login', header: 'Login' },
-    { field: 'contributions', header: 'Contributions' },
-    { field: 'url', header: 'Url' },
-    { field: 'repos_url', header: 'Repositories' },
-  ];
+  // const cols = [
+  //   { field: 'login', header: 'Login' },
+  //   { field: 'contributions', header: 'Contributions' },
+  //   { field: 'account_url', header: 'Account' },
+  //   { field: 'repos_url', header: 'Repositories' },
+  // ];
 
   const exportColumns = cols.map((col) => ({
     title: col.header,
     dataKey: col.field,
   }));
 
-  // useEffect(() => {
-  //   console.log('selectedProducts: ', JSON.stringify(selectedProducts));
-  //   console.log('selectedProducts length: ', selectedProducts.length);
-  // }, [selectedProducts]);
-
   useEffect(() => {
-    const testData = [
-      { code: 'test Name', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name2', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name3', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name4', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name5', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name6', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name7', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name8', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name9', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name10', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name11', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name12', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name13', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-      { code: 'test Name14', name: 'das', category: 'dsa', quantity: 'dsadsa' },
-    ];
-
     setProducts(contributors);
-    // productService.getProductsSmall().then((data) => setProducts(data));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const exportCSV = (selectionOnly) => {
