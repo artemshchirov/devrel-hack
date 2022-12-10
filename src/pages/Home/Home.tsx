@@ -25,18 +25,11 @@ const Home: FC = () => {
     { field: 'account_url', header: 'Account', id: 2 },
     { field: 'repos_url', header: 'Repositories', id: 3 },
     { field: 'stack', header: 'Stack', id: 4 },
-    { field: 'stack', header: 'Stack', id: 5 },
-    { field: 'stack', header: 'Stack', id: 6 },
-    { field: 'stack', header: 'Stack', id: 7 },
-    { field: 'stack', header: 'Stack', id: 8 },
-    { field: 'stack', header: 'Stack', id: 9 },
-    { field: 'stack', header: 'Stack', id: 10 },
-    { field: 'stack', header: 'Stack', id: 11 },
-    { field: 'stack', header: 'Stack', id: 12 },
   ];
 
   // TODO: change any
   function parseStack(userRepositories: any) {
+    console.log(userRepositories)
     const stackCounter: any = {};
     userRepositories.forEach((repo: any) => {
       stackCounter[repo.language] = (stackCounter[repo.language] || 0) + 1;
