@@ -13,13 +13,6 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
 
   const dt = useRef(null);
 
-  // const cols = [
-  //   { field: 'login', header: 'Login' },
-  //   { field: 'contributions', header: 'Contributions' },
-  //   { field: 'account_url', header: 'Account' },
-  //   { field: 'repos_url', header: 'Repositories' },
-  // ];
-
   const exportColumns = cols.map((col) => ({
     title: col.header,
     dataKey: col.field,
@@ -79,18 +72,12 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log('res: ', res);
-
-        let obj = res.find((o) => {
-          return o.id === id;
-        });
-        console.log('obj: ', obj);
-
-        return obj;
+        // TODO
       })
       .catch((err) => console.log(err));
   }
 
+  // NAV fetchUserRepositories
   function fetchUserRepositories({ id }) {
     return fetch(
       `https://artemshchirov.github.io/devrel-github-api/users_data_repos.json`,

@@ -1,3 +1,4 @@
+// TODO: .tsx
 import { FC, useState, useEffect } from 'react';
 
 import Page from '../../layouts/Page';
@@ -7,8 +8,13 @@ import TabViewTech from './TabViewTech';
 import PieChartDemo from './PieChart';
 import DoughnutChart from './DoughnutChart';
 import { repository_stack } from '../../data/repository_stack';
+import JsonApi from '../../utils/jsonApi';
 
-const Home: FC = () => {
+interface HomeProps {
+  jsonApi: JsonApi;
+}
+
+const Home: FC<HomeProps> = ({ jsonApi }) => {
   const sortable = Object.fromEntries(
     Object.entries(repository_stack).sort(([, a], [, b]) => b - a),
   );
@@ -29,7 +35,6 @@ const Home: FC = () => {
 
   // TODO: change any
   function parseStack(userRepositories: any) {
-    console.log(userRepositories)
     const stackCounter: any = {};
     userRepositories.forEach((repo: any) => {
       stackCounter[repo.language] = (stackCounter[repo.language] || 0) + 1;
@@ -40,7 +45,6 @@ const Home: FC = () => {
   // TODO: change any
   function handleLineClick(userRepositories: any) {
     const userStack = parseStack(userRepositories);
-    console.log(typeof userStack);
     setPieChartData(userStack);
   }
 
@@ -50,7 +54,7 @@ const Home: FC = () => {
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
       <div className="flex items-center py-5 mt-3 overflow-hidden bg-white rounded-lg card justify-evenly">
         <PieChartDemo data={pieChartData} />
-        <DoughnutChart />
+        <DoughnutChart jsonApi={jsonApi} />
       </div>
     </Page>
   );

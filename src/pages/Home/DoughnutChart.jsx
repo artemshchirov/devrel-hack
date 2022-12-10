@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Chart } from 'primereact/chart';
 
-const DoughnutChart = () => {
+const DoughnutChart = ({ jsonApi }) => {
   const [chartData] = useState({
     labels: ['A', 'B', 'C'],
     datasets: [

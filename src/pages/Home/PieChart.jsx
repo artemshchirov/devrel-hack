@@ -36,9 +36,6 @@ const PieChart = ({ data }) => {
     setDatasetLabels(newDatasetLabels);
     setDataset(newDataset);
 
-    console.log('datasetLabels: ', datasetLabels.slice(0, 10));
-    console.log('dataset: ', dataset.slice(0, 10));
-
     setChartData({
       labels: datasetLabels.slice(0, 10),
       datasets: [
