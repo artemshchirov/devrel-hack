@@ -4,20 +4,21 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
-// import { ProductService } from '../service/ProductService';
+
+import { contributors } from '../../data/contributors.ts';
 
 export const DataTableExport = () => {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  console.log('contributors: ', contributors);
 
   const dt = useRef(null);
-  // const productService = new ProductService();
 
   const cols = [
-    { field: 'code', header: 'Code' },
-    { field: 'name', header: 'Name' },
-    { field: 'category', header: 'Category' },
-    { field: 'quantity', header: 'Quantity' },
+    { field: 'login', header: 'Login' },
+    { field: 'contributions', header: 'Contributions' },
+    { field: 'url', header: 'Url' },
+    { field: 'repos_url', header: 'Repositories' },
   ];
 
   const exportColumns = cols.map((col) => ({
@@ -48,7 +49,7 @@ export const DataTableExport = () => {
       { code: 'test Name14', name: 'das', category: 'dsa', quantity: 'dsadsa' },
     ];
 
-    setProducts(testData);
+    setProducts(contributors);
     // productService.getProductsSmall().then((data) => setProducts(data));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
