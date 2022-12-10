@@ -14,8 +14,6 @@ const TabViewTech = ({ cols }) => {
     let selectedFields = [...fields];
     if (e.checked) selectedFields.push(e.value);
     else selectedFields.splice(selectedFields.indexOf(e.value), 1);
-    console.log('fields: ', fields);
-
     setFields(selectedFields);
   };
   // **** END *****
@@ -25,7 +23,7 @@ const TabViewTech = ({ cols }) => {
       <div className="overflow-hidden rounded-lg card">
         <TabView>
           <TabPanel header="Spring Boot">
-            <div className="col-12 grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-72 md:gap-x-36 sm:gap-x-4 w-max ">
               {cols.map((col) => {
                 return (
                   <div key={col.id}>
@@ -37,7 +35,7 @@ const TabViewTech = ({ cols }) => {
                     ></Checkbox>
                     <label
                       htmlFor={`cb${col.id}`}
-                      className="p-checkbox-label pl-2"
+                      className="pl-2 p-checkbox-label"
                     >
                       {col.header}
                     </label>

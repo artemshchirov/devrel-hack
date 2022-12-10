@@ -7,7 +7,7 @@ import { Tooltip } from 'primereact/tooltip';
 
 import { contributors } from '../../data/contributors.ts';
 
-export const DataTableExport = ({ cols }) => {
+export const DataTableExport = ({ cols, handleLineClick }) => {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -73,11 +73,30 @@ export const DataTableExport = ({ cols }) => {
     });
   };
 
-  const onSelectionChange = (e) => {
+  function fetchUserRepositories(login) {
+    return fetch(`https://api.github.com/users/${login}/repos`, {
+      headers: {
+        Authorization:
+          'token ' +
+          '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',
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => console.log(err));
+  }
+
+  const onSelectionChange = async (e) => {
     const selectedLine = e.value[0];
     const newSelectedProducts = selectedProducts.slice();
     newSelectedProducts.push(selectedLine);
     setSelectedProducts(newSelectedProducts);
+
+
+    const userRepositories = await fetchUserRepositories(selectedLine.login);
+    handleLineClick(userRepositories);
   };
 
   const header = (

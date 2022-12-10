@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
-const PieChart = () => {
-  const [chartData] = useState({
-    labels: ['A', 'B', 'C'],
+// FIXME: null in PieChart
+const PieChart = ({ data }) => {
+  const [datasetLabels, setDatasetLabels] = useState(
+    Object.keys(data).slice(0, 10),
+  );
+  const [dataset, setDataset] = useState(Object.values(data).slice(0, 10));
+
+  const [chartData, setChartData] = useState({
+    labels: datasetLabels,
     datasets: [
       {
-        data: [300, 50, 100],
+        data: dataset,
         backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
         hoverBackgroundColor: ['#64B5F6', '#81C784', '#FFB74D'],
       },
@@ -22,6 +28,22 @@ const PieChart = () => {
       },
     },
   });
+
+  useEffect(() => {
+    setDatasetLabels(Object.keys(data).slice(0, 10));
+    setDataset(Object.values(data).slice(0, 10));
+    console.log('dataset: ', dataset);
+    setChartData({
+      labels: datasetLabels,
+      datasets: [
+        {
+          data: dataset,
+          backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
+          hoverBackgroundColor: ['#64B5F6', '#81C784', '#FFB74D'],
+        },
+      ],
+    });
+  }, [data]);
 
   return (
     <Chart

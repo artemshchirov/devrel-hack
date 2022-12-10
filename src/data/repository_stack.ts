@@ -1,4 +1,4 @@
-{
+export const repository_stack = {
   "Java": 25482,
   "Shell": 7058,
   "C++": 31775,
