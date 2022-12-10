@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
-import { contributors } from '../../data/contributors';
-
 const backgroundColors = [
   '#42A5F5',
   '#66BB6A',

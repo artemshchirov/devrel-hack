@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Checkbox } from 'primereact/checkbox';
-import { contributors } from '../../data/contributors';
+import { contributors } from '../../../data/contributors';
 
 const TabViewTech = ({ cols }) => {
   // **************

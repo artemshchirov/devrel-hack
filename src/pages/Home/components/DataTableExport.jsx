@@ -5,7 +5,7 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
 
-import { contributors } from '../../data/contributors.ts';
+import { contributors } from '../../../data/contributors.ts';
 
 export const DataTableExport = ({ cols, handleLineClick }) => {
   const [products, setProducts] = useState([]);
