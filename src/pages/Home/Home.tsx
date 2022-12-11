@@ -20,14 +20,17 @@ import { repository_stack } from '../../data/repository_stack';
 
 const cols = [
   { field: 'login', header: 'Login', id: 0 },
-  { field: 'issue', header: 'Issue', id: 5 },
-  { field: 'stack', header: 'Stack', id: 4 },
-  { field: 'account_url', header: 'Account', id: 3 },
-  { field: 'issue_closed', header: 'Issue Closed', id: 7 },
-  { field: 'contributions', header: 'Contributions', id: 1 },
-  { field: 'repos_url', header: 'Repositories', id: 2 },
-  { field: 'issue_comments', header: 'Issue Comments', id: 6 },
-  { field: 'organizations', header: 'Organizations', id: 7 },
+  { field: 'issue', header: 'Issue', id: 1 },
+  { field: 'stack', header: 'Stack', id: 2 },
+  { field: 'admin', header: ' Admin', id: 3 },
+  { field: 'account_url', header: 'Account', id: 4 },
+  { field: 'issue_closed', header: 'Issue Closed', id: 5 },
+  { field: 'contributions', header: 'Contributions', id: 6 },
+  { field: 'following', header: 'Following', id: 7 },
+  { field: 'repos_url', header: 'Repositories', id: 8 },
+  { field: 'issue_comments', header: 'Issue Comments', id: 9 },
+  { field: 'events', header: 'Events', id: 10 },
+  { field: 'follower', header: 'Followers', id: 11 },
 ];
 
 const Home: FC = () => {
@@ -70,19 +73,19 @@ const Home: FC = () => {
     <Page>
       <TabViewTech cols={cols} />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
-      <div className="flex items-center p-3 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
+      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <PieChart jsonApi={jsonApi} data={pieChartData} />
         <h2 className="mt-3 mb-auto text-xs w-max">
           Top 10 Stack | Top 10 Activists
         </h2>
         <RadarChart jsonApi={jsonApi} />
       </div>
-      <div className="flex items-center p-3 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
+      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <PolarAreaChart jsonApi={jsonApi} data={topContributors} />
         <h2 className="mt-3 mb-auto text-xs w-max">Top Contributors</h2>
         <DoughnutChart jsonApi={jsonApi} />
       </div>
-      <div className="flex items-center py-5 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
+      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <ComboChart />
       </div>
     </Page>

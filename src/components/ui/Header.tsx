@@ -1,5 +1,8 @@
 import { FC, useState } from 'react';
+
 import CustomLink from '../CustomLink';
+
+import logo from '../../assets/logo.png';
 
 const Header: FC = () => {
   const [collapse, setCollapse] = useState<boolean>(true);
@@ -11,13 +14,13 @@ const Header: FC = () => {
   return (
     <header className="w-full p-4 mb-5 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 md:px-6 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between min-w-full">
-        <a href="#" className="flex items-center">
+        <a href="https://devrel-hack.vercel.app/" className="flex items-center">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={logo}
             className="h-6 mr-3 sm:h-10"
             alt="DevRel Hackathon Logo"
           />
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-xl font-semibold whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500  dark:text-white">
             DevRel Hack 4 Luck
           </span>
         </a>
@@ -50,7 +53,7 @@ const Header: FC = () => {
               <CustomLink
                 href="/"
                 className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                activeClassName="dark:text-white"
+                activeClassName="dark:text-white underline"
               >
                 Home
               </CustomLink>
@@ -59,7 +62,7 @@ const Header: FC = () => {
               <CustomLink
                 href="/about"
                 className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                activeClassName="dark:text-white"
+                activeClassName="dark:text-white underline"
               >
                 About
               </CustomLink>
@@ -68,7 +71,7 @@ const Header: FC = () => {
               <CustomLink
                 href="/contact"
                 className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                activeClassName="dark:text-white"
+                activeClassName="dark:text-white underline"
               >
                 Contact
               </CustomLink>

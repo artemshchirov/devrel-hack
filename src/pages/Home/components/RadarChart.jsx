@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const JSON_API_URL =
-  'https://artemshchirov.github.io/devrel-github-api/users_events.json';
+  'https://artemshchirov.github.io/devrel-json-api/users_events.json';
 
 // TODO: implement jsonApi
 const RadarChart = ({ jsonApi }) => {

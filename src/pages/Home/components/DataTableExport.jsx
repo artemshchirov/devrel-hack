@@ -68,7 +68,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
 
   function fetchContributors({ id }) {
     return fetch(
-      `https://artemshchirov.github.io/devrel-github-api/get_contributors.json`,
+      `https://artemshchirov.github.io/devrel-json-api/get_contributors.json`,
     )
       .then((res) => res.json())
       .then((res) => {
@@ -80,7 +80,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   // NAV fetchUserRepositories
   function fetchUserRepositories({ id }) {
     return fetch(
-      `https://artemshchirov.github.io/devrel-github-api/users_data_repos.json`,
+      `https://artemshchirov.github.io/devrel-json-api/users_data_repos.json`,
     )
       .then((res) => res.json())
       .then((res) => {
