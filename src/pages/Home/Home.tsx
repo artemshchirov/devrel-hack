@@ -18,7 +18,7 @@ import { configJsonApi } from '../../utils/configApi';
 import { contributors } from '../../data/contributors';
 import { repository_stack } from '../../data/repository_stack';
 
-const cols = [
+const initialCols = [
   { field: 'login', header: 'Login', id: 0 },
   { field: 'issue', header: 'Issue', id: 1 },
   { field: 'stack', header: 'Stack', id: 2 },
@@ -34,6 +34,8 @@ const cols = [
 ];
 
 const Home: FC = () => {
+  const [cols, setCols] = useState(initialCols);
+
   const jsonApi = new JsonApi(configJsonApi);
 
   const topRepositoriyStack = Object.fromEntries(
@@ -55,23 +57,36 @@ const Home: FC = () => {
   }, []);
 
   // TODO: change any
-  function parseStack(userRepositories: any) {
+  const parseStack = (userRepositories: any) => {
     const stackCounter: any = {};
     userRepositories.forEach((repo: any) => {
       stackCounter[repo.language] = (stackCounter[repo.language] || 0) + 1;
     });
     return stackCounter;
-  }
+  };
 
   // TODO: change any
-  function handleLineClick(userRepositories: any) {
+  const handleLineClick = (userRepositories: any) => {
     const userStack = parseStack(userRepositories);
     setPieChartData(userStack);
-  }
+  };
+
+  // TODO: change any
+  const handleCheckboxClick = (fields: any) => {
+    const res = initialCols.filter((obj) => {
+      return fields.includes(obj.field);
+    });
+    console.log('r', res);
+    setCols(res);
+  };
 
   return (
     <Page>
-      <TabViewTech cols={cols} />
+      <TabViewTech
+        cols={cols}
+        handleCheckboxClick={handleCheckboxClick}
+        defaultCheckboxes={initialCols}
+      />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
       <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <PieChart jsonApi={jsonApi} data={pieChartData} />

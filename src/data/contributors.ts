@@ -17,7 +17,7 @@ export const contributors = [
     events_url: "https://api.github.com/users/snicoll/events{/privacy}",
     received_events_url: "https://api.github.com/users/snicoll/received_events",
     site_admin: false,
-    contributions: 13021
+    contributions: 13021,
   },
   {
     login: "wilkinsona",
