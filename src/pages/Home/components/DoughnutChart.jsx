@@ -38,9 +38,9 @@ const DoughnutChart = ({ jsonApi, data }) => {
       datasets: [
         {
           data: shuffle([
-            getRandomArbitrary(10, 20),
-            getRandomArbitrary(10, 20),
-            getRandomArbitrary(1, 10),
+            Math.round(getRandomArbitrary(10, 20)),
+            Math.round(getRandomArbitrary(10, 20)),
+            Math.round(getRandomArbitrary(1, 10)),
           ]),
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
           hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
