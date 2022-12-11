@@ -7,11 +7,15 @@ const DoughnutChart = ({ jsonApi, data }) => {
     return arr.sort(() => Math.random() - 0.5);
   };
 
+  const getRandomArbitrary = (min, max) => {
+    return Math.random() * (max - min) + min;
+  };
+
   const [chartData, setChartData] = useState({
     labels: ['Issues', 'Issues Comments', 'Issues Closed'],
     datasets: [
       {
-        data: shuffle([431, 964, 214]),
+        data: [431, 964, 214],
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       },
@@ -33,7 +37,11 @@ const DoughnutChart = ({ jsonApi, data }) => {
       labels: ['Issues', 'Issues Comments', 'Issues Closed'],
       datasets: [
         {
-          data: shuffle([431, 964, 214]),
+          data: shuffle([
+            getRandomArbitrary(10, 20),
+            getRandomArbitrary(10, 20),
+            getRandomArbitrary(1, 10),
+          ]),
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
           hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         },
