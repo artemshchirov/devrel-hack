@@ -24,7 +24,7 @@ const TabViewTech = ({ cols }) => {
       <div className="overflow-hidden rounded-lg card">
         <TabView>
           <TabPanel header="Spring Boot">
-            <div className="grid grid-cols-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-72 md:gap-x-36 sm:gap-x-4 w-max ">
+            <div className="grid grid-cols-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-72 md:gap-x-36 sm:gap-x-4 w-max mx-auto">
               {cols.map((col) => {
                 return (
                   <div key={col.id}>

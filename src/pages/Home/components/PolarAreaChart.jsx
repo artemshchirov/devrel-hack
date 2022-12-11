@@ -18,9 +18,7 @@ const backgroundColors = [
 const PolarAreaChart = ({ data, jsonApi }) => {
   useEffect(() => {
     const topUsers = data.slice(0, 10);
-
     const topContributorsNamesDataset = topUsers.map((user) => user.labelsName);
-
     const topContributorsCommitsDataset = topUsers.map((user) => user.dataset);
 
     setChartData({

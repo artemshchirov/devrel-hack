@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
-const jsonApiUrl =
+const JSON_API_URL =
   'https://artemshchirov.github.io/devrel-github-api/users_events.json';
 
 // TODO: implement jsonApi
@@ -20,9 +20,23 @@ const RadarChart = ({ jsonApi }) => {
     return result;
   };
 
+  // NOTE: example for refactoring
+  // useEffect(() => {
+  //   const fetchData = async (url) => {
+  //     try {
+  //       const response = await fetch(url);
+  //       const results = await response.json();
+  //       setUsers(results);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData(JSON_API_URL);
+  // }, []);
+
   useEffect(() => {
     // Get user issues
-    fetch(jsonApiUrl)
+    fetch(JSON_API_URL)
       .then((res) => res.json())
       .then((res) => {
         const usersSortedByIssues = sortEventUsers(res, 'issues_cnt');
@@ -40,7 +54,7 @@ const RadarChart = ({ jsonApi }) => {
 
   useEffect(() => {
     // Get all users issues comments
-    fetch(jsonApiUrl)
+    fetch(JSON_API_URL)
       .then((res) => res.json())
       .then((res) => {
         const usersSortedByCommentIssues = sortEventUsers(
@@ -59,7 +73,7 @@ const RadarChart = ({ jsonApi }) => {
 
   useEffect(() => {
     // Get all users closed issues
-    fetch(jsonApiUrl)
+    fetch(JSON_API_URL)
       .then((res) => res.json())
       .then((res) => {
         const usersSortedByClosedIssues = sortEventUsers(
@@ -77,14 +91,6 @@ const RadarChart = ({ jsonApi }) => {
   }, []);
 
   useEffect(() => {
-    console.log('issues: ', issues);
-
-    // const newDatasetLabels = Object.keys(issues);
-    // const newDataset = Object.values(issues);
-
-    // setDatasetLabels(newDatasetLabels);
-    // setDataset(newDataset);
-
     setChartData({
       labels: labelsName,
       datasets: [

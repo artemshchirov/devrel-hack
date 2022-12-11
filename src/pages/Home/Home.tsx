@@ -3,17 +3,32 @@ import { FC, useState, useEffect } from 'react';
 
 import Page from '../../layouts/Page';
 
-import DataTableExport from './components/DataTableExport';
-import TabViewTech from './components/TabViewTech';
-import PieChart from './components/PieChart';
-import DoughnutChart from './components/DoughnutChart';
-import { repository_stack } from '../../data/repository_stack';
+import {
+  ComboChart,
+  DataTableExport,
+  DoughnutChart,
+  PieChart,
+  PolarAreaChart,
+  RadarChart,
+  TabViewTech,
+} from './components';
+
 import JsonApi from '../../utils/jsonApi';
-import RadarChart from './components/RadarChart';
 import { configJsonApi } from '../../utils/configApi';
-import PolarAreaChart from './components/PolarAreaChart';
 import { contributors } from '../../data/contributors';
-import ComboChart from './components/ComboChart';
+import { repository_stack } from '../../data/repository_stack';
+
+const cols = [
+  { field: 'login', header: 'Login', id: 0 },
+  { field: 'issue', header: 'Issue', id: 5 },
+  { field: 'stack', header: 'Stack', id: 4 },
+  { field: 'account_url', header: 'Account', id: 3 },
+  { field: 'issue_closed', header: 'Issue Closed', id: 7 },
+  { field: 'contributions', header: 'Contributions', id: 1 },
+  { field: 'repos_url', header: 'Repositories', id: 2 },
+  { field: 'issue_comments', header: 'Issue Comments', id: 6 },
+  { field: 'organizations', header: 'Organizations', id: 7 },
+];
 
 const Home: FC = () => {
   const jsonApi = new JsonApi(configJsonApi);
@@ -35,14 +50,6 @@ const Home: FC = () => {
   useEffect(() => {
     setPieChartData(repository_stack);
   }, []);
-
-  const cols = [
-    { field: 'login', header: 'Login', id: 0 },
-    { field: 'contributions', header: 'Contributions', id: 1 },
-    { field: 'account_url', header: 'Account', id: 2 },
-    { field: 'repos_url', header: 'Repositories', id: 3 },
-    { field: 'stack', header: 'Stack', id: 4 },
-  ];
 
   // TODO: change any
   function parseStack(userRepositories: any) {
