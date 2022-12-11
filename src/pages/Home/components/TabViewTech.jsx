@@ -12,12 +12,10 @@ const TabViewTech = ({ cols, handleCheckboxClick, defaultCheckboxes }) => {
   const [fields, setFields] = useState(cols.map((col) => col.field));
 
   const onFieldChange = (e) => {
-    console.log('e.checked: ', e.checked);
     let selectedFields = [...fields];
     if (e.checked) selectedFields.push(e.value);
     else selectedFields.splice(selectedFields.indexOf(e.value), 1);
     setFields(selectedFields);
-    // handleCheckboxClick(fields);
   };
 
   const handleClick = () => {
@@ -26,7 +24,7 @@ const TabViewTech = ({ cols, handleCheckboxClick, defaultCheckboxes }) => {
 
   return (
     <>
-      <div className="overflow-hidden w-max mx-auto rounded-lg card">
+      <div className="mx-auto overflow-hidden rounded-lg w-max card">
         <TabView>
           <TabPanel header="Spring Boot">
             <div className="grid grid-cols-2 mx-auto mt-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-64 md:gap-x-52 sm:gap-x-4 w-max">

@@ -62,7 +62,7 @@ const ComboChart = () => {
   });
 
   return (
-    <div className="card w-full">
+    <div className="w-full card">
       <Chart type="bar" data={chartData} options={lightOptions} />
     </div>
   );

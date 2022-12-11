@@ -15,6 +15,7 @@ const backgroundColors = [
 ];
 
 // FIXME: null in PieChart
+// FIXME: PieChart unable for 20st + users
 // TODO: implement jsonApi
 const PieChart = ({ data, jsonApi }) => {
   const [datasetLabels, setDatasetLabels] = useState(

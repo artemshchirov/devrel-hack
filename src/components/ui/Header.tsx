@@ -20,7 +20,7 @@ const Header: FC = () => {
             className="h-6 mr-3 sm:h-10"
             alt="DevRel Hackathon Logo"
           />
-          <span className="self-center text-xl font-semibold whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500  dark:text-white">
+          <span className="self-center text-xl font-semibold text-transparent whitespace-nowrap bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 dark:text-white">
             DevRel Hack 4 Luck
           </span>
         </a>

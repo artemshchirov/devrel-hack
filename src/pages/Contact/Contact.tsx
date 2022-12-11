@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import Page from '../../layouts/Page';
 
-import card_1 from '../../assets/Hanna.jpg';
-import card_2 from '../../assets/Artur.jpg';
-import card_3 from '../../assets/Ilya.jpg';
-import card_4 from '../../assets/Ameliya.jpg';
-import card_5 from '../../assets/Artem.jpg';
+import photo_1 from '../../assets/Hanna.jpg';
+import photo_2 from '../../assets/Artur.jpg';
+import photo_3 from '../../assets/Ilya.jpg';
+import photo_4 from '../../assets/Ameliya.jpg';
+import photo_5 from '../../assets/Artem.jpg';
 
 const Contact: FC = () => {
   return (
@@ -23,7 +23,7 @@ const Contact: FC = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 object-cover w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500"
-                src={card_2}
+                src={photo_2}
               />
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
@@ -86,7 +86,7 @@ const Contact: FC = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 object-cover w-24 h-24 -mt-12 bg-center rounded-full dark:bg-gray-500"
-                src={card_1}
+                src={photo_1}
               />
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
@@ -149,7 +149,7 @@ const Contact: FC = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 object-cover w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500"
-                src={card_3}
+                src={photo_3}
               />
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
@@ -211,7 +211,7 @@ const Contact: FC = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 object-cover w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500"
-                src={card_5}
+                src={photo_5}
               />
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
@@ -273,7 +273,7 @@ const Contact: FC = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 object-cover w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500"
-                src={card_4}
+                src={photo_4}
               />
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">

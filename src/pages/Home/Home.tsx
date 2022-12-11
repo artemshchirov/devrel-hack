@@ -15,6 +15,7 @@ import {
 
 import JsonApi from '../../utils/jsonApi';
 import { configJsonApi } from '../../utils/configApi';
+
 import { contributors } from '../../data/contributors';
 import { repository_stack } from '../../data/repository_stack';
 
@@ -33,25 +34,15 @@ const initialCols = [
   { field: 'followers', header: 'Followers', id: 11 },
 ];
 
+const topRepositoriyStack = Object.fromEntries(
+  Object.entries(repository_stack).sort(([, a], [, b]) => b - a),
+);
+
 const Home: FC = () => {
   const [cols, setCols] = useState(initialCols);
+  const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
 
   const jsonApi = new JsonApi(configJsonApi);
-
-  const topRepositoriyStack = Object.fromEntries(
-    Object.entries(repository_stack).sort(([, a], [, b]) => b - a),
-  );
-
-  const topContributors = contributors.map((user) => {
-    const contributor = {
-      labelsName: user.login,
-      dataset: user.contributions,
-    };
-    return contributor;
-  });
-
-  const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
-  const [doughnutChartData, setDoughnutChartData] = useState([]);
 
   useEffect(() => {
     setPieChartData(repository_stack);
@@ -75,12 +66,17 @@ const Home: FC = () => {
 
   // TODO: change any
   const handleCheckboxClick = (fields: any) => {
-    const res = initialCols.filter((obj) => {
-      return fields.includes(obj.field);
-    });
-    console.log('r', res);
+    const res = initialCols.filter((obj) => fields.includes(obj.field));
     setCols(res);
   };
+
+  const topContributors = contributors.map((user) => {
+    const contributor = {
+      labelsName: user.login,
+      dataset: user.contributions,
+    };
+    return contributor;
+  });
 
   return (
     <Page>
