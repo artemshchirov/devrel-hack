@@ -17,5 +17,5 @@ def get_contributors(url):
         my_file.write(totalJSON)
 
 
-if __name__ == '__main__':
-    get_contributors(URL)
+# if __name__ == '__main__':
+#     get_contributors(URL)

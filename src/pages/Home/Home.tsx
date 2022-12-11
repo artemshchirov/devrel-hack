@@ -18,22 +18,24 @@ import { configJsonApi } from '../../utils/configApi';
 import { contributors } from '../../data/contributors';
 import { repository_stack } from '../../data/repository_stack';
 
-const cols = [
+const initialCols = [
+  { field: 'type', header: 'Type', id: 2 },
   { field: 'login', header: 'Login', id: 0 },
-  { field: 'issue', header: 'Issue', id: 1 },
-  { field: 'stack', header: 'Stack', id: 2 },
-  { field: 'admin', header: ' Admin', id: 3 },
-  { field: 'account_url', header: 'Account', id: 4 },
-  { field: 'issue_closed', header: 'Issue Closed', id: 5 },
-  { field: 'contributions', header: 'Contributions', id: 6 },
-  { field: 'following', header: 'Following', id: 7 },
+  { field: 'stack', header: 'Stack', id: 1 },
+  { field: 'contributions', header: 'Contributions', id: 9 },
+  { field: 'html_url', header: 'Account', id: 4 },
+  { field: 'issue', header: 'Issue', id: 3 },
+  { field: 'issue_comments', header: 'Issue Comments', id: 11 },
+  { field: 'issue_closed', header: 'Issue Closed', id: 7 },
+  { field: 'events', header: 'Events', id: 5 },
+  { field: 'following', header: 'Following', id: 6 },
   { field: 'repos_url', header: 'Repositories', id: 8 },
-  { field: 'issue_comments', header: 'Issue Comments', id: 9 },
-  { field: 'events', header: 'Events', id: 10 },
-  { field: 'follower', header: 'Followers', id: 11 },
+  { field: 'followers', header: 'Followers', id: 10 },
 ];
 
 const Home: FC = () => {
+  const [cols, setCols] = useState(initialCols);
+
   const jsonApi = new JsonApi(configJsonApi);
 
   const topRepositoriyStack = Object.fromEntries(
@@ -55,23 +57,36 @@ const Home: FC = () => {
   }, []);
 
   // TODO: change any
-  function parseStack(userRepositories: any) {
+  const parseStack = (userRepositories: any) => {
     const stackCounter: any = {};
     userRepositories.forEach((repo: any) => {
       stackCounter[repo.language] = (stackCounter[repo.language] || 0) + 1;
     });
     return stackCounter;
-  }
+  };
 
   // TODO: change any
-  function handleLineClick(userRepositories: any) {
+  const handleLineClick = (userRepositories: any) => {
     const userStack = parseStack(userRepositories);
     setPieChartData(userStack);
-  }
+  };
+
+  // TODO: change any
+  const handleCheckboxClick = (fields: any) => {
+    const res = initialCols.filter((obj) => {
+      return fields.includes(obj.field);
+    });
+    console.log('r', res);
+    setCols(res);
+  };
 
   return (
     <Page>
-      <TabViewTech cols={cols} />
+      <TabViewTech
+        cols={cols}
+        handleCheckboxClick={handleCheckboxClick}
+        defaultCheckboxes={initialCols}
+      />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
       <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <PieChart jsonApi={jsonApi} data={pieChartData} />

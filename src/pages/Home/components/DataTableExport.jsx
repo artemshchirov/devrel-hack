@@ -66,19 +66,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
     });
   };
 
-  function fetchContributors({ id }) {
-    return fetch(
-      `https://artemshchirov.github.io/devrel-json-api/get_contributors.json`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        // TODO
-      })
-      .catch((err) => console.log(err));
-  }
-
-  // NAV fetchUserRepositories
-  function fetchUserRepositories({ id }) {
+  const fetchUserRepositories = ({ id }) => {
     return fetch(
       `https://artemshchirov.github.io/devrel-json-api/users_data_repos.json`,
     )
@@ -88,7 +76,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
         return res[idx];
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const onSelectionChange = async (e) => {
     const selectedLine = e.value[0];
@@ -137,7 +125,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
       <Tooltip target=".export-buttons>button" position="bottom" />
       <DataTable
         paginator
-        rows={10}
+        rows={5}
         ref={dt}
         value={products}
         header={header}

@@ -4,6 +4,10 @@
 
 <https://devrel-hack.vercel.app/>
 
+### JSON API server
+
+<https://github.com/artemshchirov/devrel-json-api/>
+
 ## Start project locally
 
 ```bash

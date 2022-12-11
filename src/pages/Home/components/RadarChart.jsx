@@ -187,8 +187,6 @@ const RadarChart = ({ jsonApi }) => {
     },
   });
 
-  function fetchIssuesCount() {}
-
   return (
     <Chart
       type="radar"
