@@ -30,7 +30,7 @@ const TabViewTech = ({ cols, handleCheckboxClick, defaultCheckboxes }) => {
       <div className="overflow-hidden rounded-lg card">
         <TabView>
           <TabPanel header="Spring Boot">
-            <div className="grid grid-cols-2 mx-auto mr-auto col-12 md:grid-cols-4 gap-y-4 xl:gap-x-64 md:gap-x-52 sm:gap-x-4 w-max">
+            <div className="grid grid-cols-2 mx-auto mt-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-64 md:gap-x-52 sm:gap-x-4 w-max">
               {defaultCheckboxes.map((col) => {
                 return (
                   <div key={col.id}>
@@ -50,13 +50,13 @@ const TabViewTech = ({ cols, handleCheckboxClick, defaultCheckboxes }) => {
                 );
               })}
             </div>
-            <div className="flex items-center w-full  mt-4">
+            <div className="flex items-center w-full mt-4">
               <Button
                 label="Submit"
                 onClick={handleClick}
                 loading={false}
                 loadingIcon="pi pi-spin pi-sun"
-                className="mx-auto w-1/6 bg-gradient-to-r rounded-lg overflow-hidden from-cyan-500 to-blue-500"
+                className="w-1/6 mx-auto mt-3 overflow-hidden rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500"
               />
             </div>
           </TabPanel>

@@ -19,18 +19,18 @@ import { contributors } from '../../data/contributors';
 import { repository_stack } from '../../data/repository_stack';
 
 const initialCols = [
-  { field: 'type', header: 'Type', id: 2 },
-  { field: 'login', header: 'Login', id: 0 },
-  { field: 'stack', header: 'Stack', id: 1 },
-  { field: 'contributions', header: 'Contributions', id: 9 },
+  { field: 'type', header: 'Type', id: 0 },
+  { field: 'login', header: 'Login', id: 1 },
+  { field: 'stack', header: 'Stack', id: 2 },
+  { field: 'contributions', header: 'Contributions', id: 3 },
   { field: 'html_url', header: 'Account', id: 4 },
-  { field: 'issue', header: 'Issue', id: 3 },
-  { field: 'issue_comments', header: 'Issue Comments', id: 11 },
-  { field: 'issue_closed', header: 'Issue Closed', id: 7 },
-  { field: 'events', header: 'Events', id: 5 },
-  { field: 'following', header: 'Following', id: 6 },
-  { field: 'repos_url', header: 'Repositories', id: 8 },
-  { field: 'followers', header: 'Followers', id: 10 },
+  // { field: 'issue', header: 'Issue', id: 5 },
+  // { field: 'issue_comments', header: 'Issue Comments', id: 6 },
+  // { field: 'issue_closed', header: 'Issue Closed', id: 7 },
+  { field: 'events', header: 'Events', id: 8 },
+  { field: 'following', header: 'Following', id: 9 },
+  { field: 'repos_url', header: 'Repositories', id: 10 },
+  { field: 'followers', header: 'Followers', id: 11 },
 ];
 
 const Home: FC = () => {
@@ -51,6 +51,7 @@ const Home: FC = () => {
   });
 
   const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
+  const [doughnutChartData, setDoughnutChartData] = useState([]);
 
   useEffect(() => {
     setPieChartData(repository_stack);
@@ -68,6 +69,7 @@ const Home: FC = () => {
   // TODO: change any
   const handleLineClick = (userRepositories: any) => {
     const userStack = parseStack(userRepositories);
+    setPieChartData(userStack);
     setPieChartData(userStack);
   };
 
@@ -90,15 +92,17 @@ const Home: FC = () => {
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
       <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <PieChart jsonApi={jsonApi} data={pieChartData} />
-        <h2 className="mt-3 mb-auto text-xs w-max">
+        <h2 className="mb-auto text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 w-max">
           Top 10 Stack | Top 10 Activists
         </h2>
-        <RadarChart jsonApi={jsonApi} />
+        <DoughnutChart jsonApi={jsonApi} data={pieChartData} />
       </div>
       <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
+        <RadarChart jsonApi={jsonApi} />
+        <h2 className="mb-auto text-lg text-transparent w-max bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 ">
+          Top Contributors
+        </h2>
         <PolarAreaChart jsonApi={jsonApi} data={topContributors} />
-        <h2 className="mt-3 mb-auto text-xs w-max">Top Contributors</h2>
-        <DoughnutChart jsonApi={jsonApi} />
       </div>
       {/* <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <ComboChart />

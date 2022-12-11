@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
 
 // TODO: implement jsonApi
-const DoughnutChart = ({ jsonApi }) => {
-  const [issues, setIssues] = useState({});
+const DoughnutChart = ({ jsonApi, data }) => {
+  const shuffle = (arr) => {
+    return arr.sort(() => Math.random() - 0.5);
+  };
 
-  useEffect(() => {
-    // setIssues(jsonApi.getIssuesCount());
-  }, []);
-
-  const [chartData] = useState({
-    labels: ['A', 'B', 'C'],
+  const [chartData, setChartData] = useState({
+    labels: ['Issues', 'Issues Comments', 'Issues Closed'],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: shuffle([431, 964, 214]),
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       },
@@ -29,6 +27,19 @@ const DoughnutChart = ({ jsonApi }) => {
       },
     },
   });
+
+  useEffect(() => {
+    setChartData({
+      labels: ['Issues', 'Issues Comments', 'Issues Closed'],
+      datasets: [
+        {
+          data: shuffle([431, 964, 214]),
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        },
+      ],
+    });
+  }, [data]);
 
   return (
     <Chart
