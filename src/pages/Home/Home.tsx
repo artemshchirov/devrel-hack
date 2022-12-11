@@ -100,9 +100,9 @@ const Home: FC = () => {
         <h2 className="mt-3 mb-auto text-xs w-max">Top Contributors</h2>
         <DoughnutChart jsonApi={jsonApi} />
       </div>
-      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
+      {/* <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
         <ComboChart />
-      </div>
+      </div> */}
     </Page>
   );
 };
