@@ -35,11 +35,7 @@
 
 3. Выгрузите данные в любом удобном для вас варианте или воспользуйтесь красочной диаграммой для анализа.
 
-### GitHub
-
-<https://github.com/artemshchirov/>
-
-### JSON API Server
+### GITHUB JSON API Server
 
 <https://github.com/artemshchirov/devrel-json-api/>
 
