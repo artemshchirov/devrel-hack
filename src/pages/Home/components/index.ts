@@ -1,11 +1,9 @@
-import ComboChart from "./ComboChart";
+import ComboChart from "./Charts/ComboChart";
 import DataTableExport from "./DataTableExport";
-import DoughnutChart from "./DoughnutChart";
-import PieChart from "./PieChart";
-import PolarAreaChart from "./PolarAreaChart";
-import RadarChart from "./RadarChart";
+import DoughnutChart from "./Charts/DoughnutChart";
+import PieChart from "./Charts/PieChart";
+import PolarAreaChart from "./Charts/PolarAreaChart";
+import RadarChart from "./Charts/RadarChart";
 import TabViewTech from "./TabViewTech";
-
-
 
 export { ComboChart, DataTableExport, DoughnutChart, PieChart, PolarAreaChart, RadarChart, TabViewTech }

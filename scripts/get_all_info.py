@@ -30,7 +30,8 @@ def get_user_info():
     for item in tqdm(rawData):
         response = requests.get(item['url'], headers=headers)
         total += [response.json()]
-        respRepositories = requests.get(item['url'] + '/repos', headers=headers)
+        respRepositories = requests.get(
+            item['url'] + '/repos', headers=headers)
         totalRepos += [respRepositories.json()]
 
     totalJSON = json.dumps(total)
@@ -64,7 +65,6 @@ def expand_contributors_info():
         fileJson = myFile.read()
 
     userData = json.loads(fileJson)
-
 
     for item in tqdm(rawData):
         # response = requests.get(item['url'], headers=headers)
@@ -142,7 +142,8 @@ def get_events():
         user_issues_cnt = 0
         user_issues_comments_cnt = 0
         user_issues_closed_cnt = 0
-        response = requests.get("https://api.github.com/users/{}/events".format(item), headers=headers)
+        response = requests.get(
+            "https://api.github.com/users/{}/events".format(item), headers=headers)
         if users_events.get(item) is None:
             users_events[item] = dict()
             if users_events.get(item).get('events') is None:
