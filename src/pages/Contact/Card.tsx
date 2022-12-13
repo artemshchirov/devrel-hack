@@ -1,4 +1,7 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
+
+import { Toast } from 'primereact/toast';
+
 import CustomLink from '../../components/CustomLink';
 
 interface CardProps {
@@ -20,6 +23,16 @@ const Card: FC<CardProps> = ({
   github,
   link,
 }) => {
+  const toast = useRef<Toast>(null);
+  const displaySuccess = () => {
+    toast.current?.show({
+      severity: 'success',
+      summary: 'Email successfully copied',
+      detail: 'Email copied to your clipboard',
+      life: 3000,
+    });
+  };
+
   return (
     <article className="flex flex-col justify-center w-full px-8 mx-2 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
       <img
@@ -34,11 +47,19 @@ const Card: FC<CardProps> = ({
       <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
         <button
           onClick={() => {
+            displaySuccess();
             navigator.clipboard.writeText(email);
           }}
         >
           <i className="pi pi-envelope w-5 h-5" />
         </button>
+
+        <Toast
+          ref={toast}
+          position="top-center"
+          className="cssclassname"
+        ></Toast>
+
         {linkedin ? (
           <CustomLink href={linkedin}>
             <i className="pi pi-linkedin w-5 h-5" />
