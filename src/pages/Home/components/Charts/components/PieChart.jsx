@@ -16,25 +16,8 @@ const backgroundColors = [
 
 // FIXME: null in PieChart
 // FIXME: PieChart unable for 20st + users
-// TODO: implement jsonApi
-const PieChart = ({ data, jsonApi }) => {
-  const [datasetLabels, setDatasetLabels] = useState(
-    Object.keys(data).slice(0, 10),
-  );
-  const [dataset, setDataset] = useState(Object.values(data).slice(0, 10));
-
-  const [chartData, setChartData] = useState({
-    labels: datasetLabels,
-    datasets: [
-      {
-        data: dataset,
-        data: dataset.slice(0, 10),
-        backgroundColor: backgroundColors,
-        hoverBackgroundColor: ['#B3FFFFFF'],
-      },
-    ],
-  });
-
+const PieChart = ({ pieChartData }) => {
+  const [chartData, setChartData] = useState({});
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -46,23 +29,19 @@ const PieChart = ({ data, jsonApi }) => {
   });
 
   useEffect(() => {
-    const newDatasetLabels = Object.keys(data);
-    const newDataset = Object.values(data);
-
-    setDatasetLabels(newDatasetLabels);
-    setDataset(newDataset);
-
+    const datasetLabels = Object.keys(pieChartData).slice(0, 10);
+    const dataset = Object.values(pieChartData).slice(0, 10);
     setChartData({
-      labels: datasetLabels.slice(0, 10),
+      labels: datasetLabels,
       datasets: [
         {
-          data: dataset.slice(0, 10),
+          data: dataset,
           backgroundColor: backgroundColors,
           hoverBackgroundColor: ['#B3FFFFFF'],
         },
       ],
     });
-  }, [data]);
+  }, [pieChartData]);
 
   return (
     <Chart

@@ -3,15 +3,7 @@ import { FC, useState, useEffect } from 'react';
 
 import Page from '../../layouts/Page';
 
-import {
-  ComboChart,
-  DataTableExport,
-  DoughnutChart,
-  PieChart,
-  PolarAreaChart,
-  RadarChart,
-  TabViewTech,
-} from './components';
+import { Charts, DataTableExport, TabViewTech } from './components';
 
 import JsonApi from '../../utils/jsonApi';
 import { configJsonApi } from '../../utils/configApi';
@@ -24,14 +16,14 @@ const initialCols = [
   { field: 'login', header: 'Login', id: 1 },
   { field: 'stack', header: 'Stack', id: 2 },
   { field: 'contributions', header: 'Contributions', id: 3 },
-  { field: 'html_url', header: 'Account', id: 4 },
-  // { field: 'issue', header: 'Issue', id: 5 },
-  // { field: 'issue_comments', header: 'Issue Comments', id: 6 },
-  // { field: 'issue_closed', header: 'Issue Closed', id: 7 },
-  { field: 'events', header: 'Events', id: 8 },
-  { field: 'following', header: 'Following', id: 9 },
-  { field: 'repos_url', header: 'Repositories', id: 10 },
-  { field: 'followers', header: 'Followers', id: 11 },
+  { field: 'html_url', header: 'Account', id: 7 },
+  { field: 'followers', header: 'Followers', id: 5 },
+  { field: 'following', header: 'Following', id: 6 },
+  { field: 'events', header: 'Events', id: 4 },
+  { field: 'issue', header: 'Issue', id: 8 },
+  { field: 'issue_comments', header: 'Comments', id: 9 },
+  { field: 'issue_closed', header: 'Closed', id: 10 },
+  { field: 'repos_url', header: 'Repositories', id: 11 },
 ];
 
 const topRepositoriyStack = Object.fromEntries(
@@ -42,7 +34,7 @@ const Home: FC = () => {
   const [cols, setCols] = useState(initialCols);
   const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
 
-  const jsonApi = new JsonApi(configJsonApi);
+  // const jsonApi = new JsonApi(configJsonApi);
 
   useEffect(() => {
     setPieChartData(repository_stack);
@@ -70,7 +62,7 @@ const Home: FC = () => {
     setCols(res);
   };
 
-  const topContributors = contributors.map((user) => {
+  const polarChartData = contributors.map((user) => {
     const contributor = {
       labelsName: user.login,
       dataset: user.contributions,
@@ -86,23 +78,7 @@ const Home: FC = () => {
         defaultCheckboxes={initialCols}
       />
       <DataTableExport cols={cols} handleLineClick={handleLineClick} />
-      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
-        <PieChart jsonApi={jsonApi} data={pieChartData} />
-        <h2 className="mb-auto text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 w-max">
-          Top 10 Stack | Top 10 Activists
-        </h2>
-        <DoughnutChart jsonApi={jsonApi} data={pieChartData} />
-      </div>
-      <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
-        <RadarChart jsonApi={jsonApi} />
-        <h2 className="mb-auto text-lg text-transparent w-max bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 ">
-          Top Contributors
-        </h2>
-        <PolarAreaChart jsonApi={jsonApi} data={topContributors} />
-      </div>
-      {/* <div className="flex items-center p-6 mt-3 overflow-hidden bg-white rounded-lg flex-nowrap card justify-evenly">
-        <ComboChart />
-      </div> */}
+      <Charts pieChartData={pieChartData} polarChartData={polarChartData} />
     </Page>
   );
 };

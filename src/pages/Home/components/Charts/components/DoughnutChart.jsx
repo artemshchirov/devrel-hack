@@ -1,27 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
 
-// TODO: implement jsonApi
-const DoughnutChart = ({ jsonApi, data }) => {
-  const shuffle = (arr) => {
-    return arr.sort(() => Math.random() - 0.5);
-  };
-
-  const getRandomArbitrary = (min, max) => {
-    return Math.random() * (max - min) + min;
-  };
-
-  const [chartData, setChartData] = useState({
-    labels: ['Issues', 'Issues Comments', 'Issues Closed'],
-    datasets: [
-      {
-        data: [431, 964, 214],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      },
-    ],
-  });
-
+const DoughnutChart = ({ doughnutChartData }) => {
+  const [chartData, setChartData] = useState({});
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -47,7 +28,10 @@ const DoughnutChart = ({ jsonApi, data }) => {
         },
       ],
     });
-  }, [data]);
+  }, [doughnutChartData]);
+
+  const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+  const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
   return (
     <Chart

@@ -27,7 +27,7 @@ const TabViewTech = ({ cols, handleCheckboxClick, defaultCheckboxes }) => {
       <div className="mx-auto overflow-hidden rounded-lg w-max card">
         <TabView>
           <TabPanel header="Spring Boot">
-            <div className="grid grid-cols-2 mx-auto mt-2 mr-auto col-12 md:grid-cols-3 gap-y-4 xl:gap-x-64 md:gap-x-52 sm:gap-x-4 w-max">
+            <div className="grid grid-cols-2 mx-auto mt-2 mr-auto col-12 md:grid-cols-4 gap-y-4 xl:gap-x-64 md:gap-x-52 sm:gap-x-4 w-max">
               {defaultCheckboxes.map((col) => {
                 return (
                   <div key={col.id}>
