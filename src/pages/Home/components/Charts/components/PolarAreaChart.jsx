@@ -15,7 +15,22 @@ const backgroundColors = [
 ];
 
 const PolarAreaChart = ({ polarChartData }) => {
-  const [chartData, setChartData] = useState({});
+  const topUsers = polarChartData.slice(0, 10);
+  const topContributorsNamesDataset = topUsers.map((user) => user.labelsName);
+  const topContributorsCommitsDataset = topUsers.map((user) => user.dataset);
+
+  const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+  const [chartData, setChartData] = useState({
+    datasets: [
+      {
+        data: shuffle(topContributorsCommitsDataset),
+        backgroundColor: backgroundColors,
+        label: 'Top 10 contributors',
+      },
+    ],
+    labels: shuffle(topContributorsNamesDataset),
+  });
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -33,10 +48,6 @@ const PolarAreaChart = ({ polarChartData }) => {
     },
   });
 
-  const topUsers = polarChartData.slice(0, 10);
-  const topContributorsNamesDataset = topUsers.map((user) => user.labelsName);
-  const topContributorsCommitsDataset = topUsers.map((user) => user.dataset);
-
   useEffect(() => {
     setChartData({
       datasets: [
@@ -49,8 +60,6 @@ const PolarAreaChart = ({ polarChartData }) => {
       labels: shuffle(topContributorsNamesDataset),
     });
   }, [polarChartData]);
-
-  const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
   return (
     <Chart

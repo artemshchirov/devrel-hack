@@ -17,7 +17,20 @@ const backgroundColors = [
 // FIXME: null in PieChart
 // FIXME: PieChart unable for 20st + users
 const PieChart = ({ pieChartData }) => {
-  const [chartData, setChartData] = useState({});
+  const datasetLabels = Object.keys(pieChartData).slice(0, 10);
+  const dataset = Object.values(pieChartData).slice(0, 10);
+
+  const [chartData, setChartData] = useState({
+    labels: datasetLabels,
+    datasets: [
+      {
+        data: dataset,
+        backgroundColor: backgroundColors,
+        hoverBackgroundColor: ['#B3FFFFFF'],
+      },
+    ],
+  });
+
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -29,8 +42,6 @@ const PieChart = ({ pieChartData }) => {
   });
 
   useEffect(() => {
-    const datasetLabels = Object.keys(pieChartData).slice(0, 10);
-    const dataset = Object.values(pieChartData).slice(0, 10);
     setChartData({
       labels: datasetLabels,
       datasets: [
