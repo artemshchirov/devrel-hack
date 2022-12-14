@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const DoughnutChart = ({ doughnutChartData }) => {

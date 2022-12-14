@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const backgroundColors = [
