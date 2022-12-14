@@ -21,16 +21,7 @@ const PolarAreaChart = ({ polarChartData }) => {
 
   const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
-  const [chartData, setChartData] = useState({
-    datasets: [
-      {
-        data: shuffle(topContributorsCommitsDataset),
-        backgroundColor: backgroundColors,
-        label: 'Top 10 contributors',
-      },
-    ],
-    labels: shuffle(topContributorsNamesDataset),
-  });
+  const [chartData, setChartData] = useState({});
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -48,7 +39,7 @@ const PolarAreaChart = ({ polarChartData }) => {
     },
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setChartData({
       datasets: [
         {

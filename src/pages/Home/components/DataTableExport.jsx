@@ -20,7 +20,29 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
 
   useEffect(() => {
     setProducts(contributors);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchUserRepositories = async ({ id }) => {
+    try {
+      const response = await fetch(
+        'https://artemshchirov.github.io/devrel-json-api/users_data_repos.json',
+      );
+      const results = await response.json();
+      const idx = results.findIndex((user) => user[0].owner.id === id);
+      return results[idx];
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onSelectionChange = async (e) => {
+    const selectedLine = e.value[0];
+    const newSelectedProducts = selectedProducts.slice();
+    newSelectedProducts.push(selectedLine);
+    setSelectedProducts(newSelectedProducts);
+    const userRepositories = await fetchUserRepositories(selectedLine);
+    handleLineClick(userRepositories);
+  };
 
   const exportCSV = (selectionOnly) => {
     dt.current.exportCSV({ selectionOnly });
@@ -64,27 +86,6 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
         );
       }
     });
-  };
-
-  const fetchUserRepositories = ({ id }) => {
-    return fetch(
-      `https://artemshchirov.github.io/devrel-json-api/users_data_repos.json`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        const idx = res.findIndex((user) => user[0].owner.id === id);
-        return res[idx];
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const onSelectionChange = async (e) => {
-    const selectedLine = e.value[0];
-    const newSelectedProducts = selectedProducts.slice();
-    newSelectedProducts.push(selectedLine);
-    setSelectedProducts(newSelectedProducts);
-    const userRepositories = await fetchUserRepositories(selectedLine);
-    handleLineClick(userRepositories);
   };
 
   const header = (

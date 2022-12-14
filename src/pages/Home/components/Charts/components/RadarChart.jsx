@@ -9,7 +9,7 @@ const RadarChart = () => {
   const [issues, setIssues] = useState([]);
   const [issuesComments, setIssuesComments] = useState([]);
   const [issuesClosed, setIssuesClosed] = useState([]);
-  
+
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -33,41 +33,7 @@ const RadarChart = () => {
     },
   });
 
-  const [chartData, setChartData] = useState({
-    labels: labelsName,
-    datasets: [
-      {
-        label: 'Issues',
-        backgroundColor: 'rgba(179,181,198,0.2)',
-        borderColor: 'rgba(179,181,198,1)',
-        pointBackgroundColor: 'rgba(179,181,198,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(179,181,198,1)',
-        data: issues,
-      },
-      {
-        label: 'Issues Comments',
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        pointBackgroundColor: 'rgba(255,99,132,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(255,99,132,1)',
-        data: issuesComments,
-      },
-      {
-        label: 'Issues Closed',
-        backgroundColor: 'rgba(142,99,132,0.2)',
-        borderColor: 'rgba(142,99,132,1)',
-        pointBackgroundColor: 'rgba(142,99,132,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(142,99,132,1)',
-        data: issuesClosed,
-      },
-    ],
-  });
+  const [chartData, setChartData] = useState({});
 
   const sortEventUsers = (obj, byValue) => {
     const sortData = Object.fromEntries(Object.entries(obj));
@@ -77,14 +43,13 @@ const RadarChart = () => {
     return result;
   };
 
-  // TODO: refactoring
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Get user events data
-    const fetchData = async (url) => {
+    const fetchUsersEvents = async (url) => {
       try {
-        fetch(JSON_API_URL);
         const response = await fetch(url);
         const results = await response.json();
+
         const usersSortedByIssues = sortEventUsers(results, 'issues_cnt');
         const usersSortedByCommentIssues = sortEventUsers(
           results,
@@ -114,10 +79,11 @@ const RadarChart = () => {
         console.log(err);
       }
     };
-    fetchData(JSON_API_URL);
+
+    fetchUsersEvents(JSON_API_URL);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setChartData({
       labels: labelsName,
       datasets: [

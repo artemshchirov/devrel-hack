@@ -19,18 +19,8 @@ const backgroundColors = [
 const PieChart = ({ pieChartData }) => {
   const datasetLabels = Object.keys(pieChartData).slice(0, 10);
   const dataset = Object.values(pieChartData).slice(0, 10);
-
-  const [chartData, setChartData] = useState({
-    labels: datasetLabels,
-    datasets: [
-      {
-        data: dataset,
-        backgroundColor: backgroundColors,
-        hoverBackgroundColor: ['#B3FFFFFF'],
-      },
-    ],
-  });
-
+  
+  const [chartData, setChartData] = useState({});
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -41,7 +31,7 @@ const PieChart = ({ pieChartData }) => {
     },
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setChartData({
       labels: datasetLabels,
       datasets: [

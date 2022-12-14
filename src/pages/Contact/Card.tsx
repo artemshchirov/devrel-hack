@@ -53,7 +53,6 @@ const Card: FC<CardProps> = ({
         >
           <i className="pi pi-envelope w-5 h-5" />
         </button>
-
         <Toast
           ref={toast}
           position="top-center"

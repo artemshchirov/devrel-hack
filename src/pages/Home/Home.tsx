@@ -5,9 +5,6 @@ import Page from '../../layouts/Page';
 
 import { Charts, DataTableExport, TabViewTech } from './components';
 
-import JsonApi from '../../utils/jsonApi';
-import { configJsonApi } from '../../utils/configApi';
-
 import { contributors } from '../../data/contributors';
 import { repository_stack } from '../../data/repository_stack';
 
@@ -33,8 +30,6 @@ const topRepositoriyStack = Object.fromEntries(
 const Home: FC = () => {
   const [cols, setCols] = useState(initialCols);
   const [pieChartData, setPieChartData] = useState(topRepositoriyStack);
-
-  // const jsonApi = new JsonApi(configJsonApi);
 
   useEffect(() => {
     setPieChartData(repository_stack);
