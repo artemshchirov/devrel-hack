@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const backgroundColors = [
@@ -20,7 +20,17 @@ const PieChart = ({ pieChartData }) => {
   const datasetLabels = Object.keys(pieChartData).slice(0, 10);
   const dataset = Object.values(pieChartData).slice(0, 10);
 
-  const [chartData, setChartData] = useState({});
+  const [chartData, setChartData] = useState({
+    labels: datasetLabels,
+    datasets: [
+      {
+        data: dataset,
+        backgroundColor: backgroundColors,
+        hoverBackgroundColor: ['#B3FFFFFF'],
+      },
+    ],
+  });
+
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -31,7 +41,7 @@ const PieChart = ({ pieChartData }) => {
     },
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setChartData({
       labels: datasetLabels,
       datasets: [

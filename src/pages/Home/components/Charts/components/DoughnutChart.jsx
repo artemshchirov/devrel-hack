@@ -1,11 +1,25 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const DoughnutChart = ({ doughnutChartData }) => {
   const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
   const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
-  const [chartData, setChartData] = useState({});
+  const [chartData, setChartData] = useState({
+    labels: ['Issues', 'Issues Comments', 'Issues Closed'],
+    datasets: [
+      {
+        data: shuffle([
+          Math.round(getRandomArbitrary(10, 20)),
+          Math.round(getRandomArbitrary(10, 20)),
+          Math.round(getRandomArbitrary(1, 10)),
+        ]),
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      },
+    ],
+  });
+
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -16,7 +30,7 @@ const DoughnutChart = ({ doughnutChartData }) => {
     },
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setChartData({
       labels: ['Issues', 'Issues Comments', 'Issues Closed'],
       datasets: [

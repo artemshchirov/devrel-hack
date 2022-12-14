@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
 const backgroundColors = [
@@ -21,7 +21,16 @@ const PolarAreaChart = ({ polarChartData }) => {
 
   const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
-  const [chartData, setChartData] = useState({});
+  const [chartData, setChartData] = useState({
+    datasets: [
+      {
+        data: shuffle(topContributorsCommitsDataset),
+        backgroundColor: backgroundColors,
+        label: 'Top 10 contributors',
+      },
+    ],
+    labels: shuffle(topContributorsNamesDataset),
+  });
   const [lightOptions] = useState({
     plugins: {
       legend: {
@@ -39,7 +48,7 @@ const PolarAreaChart = ({ polarChartData }) => {
     },
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setChartData({
       datasets: [
         {
