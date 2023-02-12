@@ -1,11 +1,11 @@
 // TODO: .tsx
-import { useState, useEffect, useRef } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
-import { Tooltip } from 'primereact/tooltip';
+import { useState, useEffect, useRef } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import { Tooltip } from "primereact/tooltip";
 
-import { contributors } from '../../../data/contributors.ts';
+import { contributors } from "../../../data/contributors.ts";
 
 export const DataTableExport = ({ cols, handleLineClick }) => {
   const [products, setProducts] = useState([]);
@@ -25,7 +25,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   const fetchUserRepositories = async ({ id }) => {
     try {
       const response = await fetch(
-        'https://artemshchirov.github.io/devrel-json-api/users_data_repos.json',
+        "https://artemshchirov.github.io/devrel-json-api/users_data_repos.json"
       );
       const results = await response.json();
       const idx = results.findIndex((user) => user[0].owner.id === id);
@@ -49,40 +49,40 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   };
 
   const exportPdf = () => {
-    import('jspdf').then((jsPDF) => {
-      import('jspdf-autotable').then(() => {
+    import("jspdf").then((jsPDF) => {
+      import("jspdf-autotable").then(() => {
         const doc = new jsPDF.default(0, 0);
         doc.autoTable(exportColumns, products);
-        doc.save('products.pdf');
+        doc.save("products.pdf");
       });
     });
   };
 
   const exportExcel = () => {
-    import('xlsx').then((xlsx) => {
+    import("xlsx").then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(products);
-      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
       const excelBuffer = xlsx.write(workbook, {
-        bookType: 'xlsx',
-        type: 'array',
+        bookType: "xlsx",
+        type: "array",
       });
-      saveAsExcelFile(excelBuffer, 'products');
+      saveAsExcelFile(excelBuffer, "products");
     });
   };
 
   const saveAsExcelFile = (buffer, fileName) => {
-    import('file-saver').then((module) => {
+    import("file-saver").then((module) => {
       if (module && module.default) {
         let EXCEL_TYPE =
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        let EXCEL_EXTENSION = '.xlsx';
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+        let EXCEL_EXTENSION = ".xlsx";
         const data = new Blob([buffer], {
           type: EXCEL_TYPE,
         });
 
         module.default.saveAs(
           data,
-          fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION,
+          fileName + "_export_" + new Date().getTime() + EXCEL_EXTENSION
         );
       }
     });
@@ -122,7 +122,7 @@ export const DataTableExport = ({ cols, handleLineClick }) => {
   );
 
   return (
-    <div className="mt-3 overflow-hidden rounded-lg card">
+    <div className="mt-3 overflow-hidden rounded-md card">
       <Tooltip target=".export-buttons>button" position="bottom" />
       <DataTable
         paginator

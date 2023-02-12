@@ -4,6 +4,10 @@
 
 <https://devrel-hack.vercel.app/>
 
+### GITHUB JSON API Server
+
+<https://github.com/artemshchirov/devrel-json-api/>
+
 ## About
 
 Наш веб-сервис, позволяет просматривать и анализировать информацию о наиболее значимых параметрах в сообществе Github, делать выборки по разным параметрам для успешной работы с IT-сообществом DevRel специалиста.
@@ -34,10 +38,6 @@
 2. Система предложит наиболее подходящих пользователей по вашему запросу.
 
 3. Выгрузите данные в любом удобном для вас варианте или воспользуйтесь красочной диаграммой для анализа.
-
-### GITHUB JSON API Server
-
-<https://github.com/artemshchirov/devrel-json-api/>
 
 ## Start project locally
 

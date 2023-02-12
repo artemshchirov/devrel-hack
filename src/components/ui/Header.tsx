@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
+import { FC, useState } from "react";
 
-import CustomLink from '../CustomLink';
+import CustomLink from "../CustomLink";
 
-import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.png";
 
 const Header: FC = () => {
   const [collapse, setCollapse] = useState<boolean>(true);
@@ -12,7 +12,7 @@ const Header: FC = () => {
   };
 
   return (
-    <header className="w-full p-4 mb-5 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 md:px-6 dark:border-gray-700">
+    <header className="w-full p-4 mb-5 border-gray-200 rounded-md bg-gray-50 dark:bg-gray-800 md:px-6 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between min-w-full">
         <a href="https://devrel-hack.vercel.app/" className="flex items-center">
           <img
@@ -27,7 +27,7 @@ const Header: FC = () => {
         <button
           onClick={handleCollapse}
           type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -45,9 +45,9 @@ const Header: FC = () => {
           </svg>
         </button>
         <div
-          className={`${collapse ? 'hidden' : ''} w-full md:block md:w-auto`}
+          className={`${collapse ? "hidden" : ""} w-full md:block md:w-auto`}
         >
-          <ul className="flex flex-col mt-4 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+          <ul className="flex flex-col mt-4 rounded-md bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
             <li>
               {/* // TODO: aria-current="page" */}
               <CustomLink
